@@ -43,11 +43,11 @@ You supply the **text**. The templates own all the design, layout, and motion. T
 TTS, sound design, rendering, and the final mux — and hands you three files ready for
 CapCut / TikTok / Shorts / Reels:
 
-| File         | What it's for                                  |
-| ------------ | ---------------------------------------------- |
-| `video.mp4`  | Final 9:16 video with voice + SFX baked in     |
-| `voice.mp3`  | Narration track — drop into CapCut             |
-| `script.txt` | Plain text — CapCut auto-caption               |
+| File         | What it's for                              |
+| ------------ | ------------------------------------------ |
+| `video.mp4`  | Final 9:16 video with voice + SFX baked in |
+| `voice.mp3`  | Narration track — drop into CapCut         |
+| `script.txt` | Plain text — CapCut auto-caption           |
 
 ---
 
@@ -113,19 +113,11 @@ A few minutes later → `output/<slug>/video.mp4` (1080×1920).
 
 ---
 
-## 🎥 See it in action
+## 🎥 Live demo
 
-Curious what comes out the other end? The clip below was rendered **end-to-end by the pipeline** —
-Vietnamese narration, animated poster templates, and auto-mixed sound effects — all from a single
-command, with zero manual editing. This is the raw output, exactly as the tool produces it.
+### 👉 [**▶️ Watch on YouTube Shorts**](https://youtube.com/shorts/LUAgRhPBONg) 👈
 
-<div align="center">
-
-<video src="./assets/claudecode_aicoding.mp4" controls muted playsinline width="304" height="540"></video>
-
-<sub>▶️ Video not playing inline? <a href="./assets/claudecode_aicoding.mp4">Open the sample video</a></sub>
-
-</div>
+[![Watch Demo](https://img.youtube.com/vi/LUAgRhPBONg/maxresdefault.jpg)](https://youtube.com/shorts/LUAgRhPBONg)
 
 ---
 
@@ -153,16 +145,16 @@ flowchart LR
 
 Eight deterministic steps in [`src/render/template-pipeline.ts`](src/render/template-pipeline.ts):
 
-| # | Step             | Output                                                        |
-| - | ---------------- | ------------------------------------------------------------ |
-| 1 | **Validate**     | `script.json` checked against the Zod schema                 |
-| 2 | **Caption text** | `script.txt` — all `voiceText` joined (CapCut auto-caption)  |
-| 3 | **TTS / scene**  | `voice/scene-<id>.mp3` via OmniVoice _(idempotent)_          |
-| 4 | **Concat voice** | `voice-raw.mp3` with 0.3s gaps + per-scene start times       |
-| 5 | **SFX mix**      | `voice.mp3` — sound effects layered onto the narration       |
-| 6 | **Render clips** | `clips/scene-<id>-fit.mp4` — template → MP4, fit to narration|
-| 7 | **Concat + mux** | `video-silent.mp4` → `video.mp4` (voice muxed in)            |
-| 8 | **Done**         | prints result paths + total duration                         |
+| #   | Step             | Output                                                        |
+| --- | ---------------- | ------------------------------------------------------------- |
+| 1   | **Validate**     | `script.json` checked against the Zod schema                  |
+| 2   | **Caption text** | `script.txt` — all `voiceText` joined (CapCut auto-caption)   |
+| 3   | **TTS / scene**  | `voice/scene-<id>.mp3` via OmniVoice _(idempotent)_           |
+| 4   | **Concat voice** | `voice-raw.mp3` with 0.3s gaps + per-scene start times        |
+| 5   | **SFX mix**      | `voice.mp3` — sound effects layered onto the narration        |
+| 6   | **Render clips** | `clips/scene-<id>-fit.mp4` — template → MP4, fit to narration |
+| 7   | **Concat + mux** | `video-silent.mp4` → `video.mp4` (voice muxed in)             |
+| 8   | **Done**         | prints result paths + total duration                          |
 
 ---
 
@@ -173,13 +165,13 @@ Eight deterministic steps in [`src/render/template-pipeline.ts`](src/render/temp
 
 <br/>
 
-| Item                  | Need       | Notes                                                              |
-| --------------------- | ---------- | ------------------------------------------------------------------ |
-| **Node.js**           | ≥ 22       | `node --version`                                                  |
-| **FFmpeg + ffprobe**  | any modern | must be in PATH (`ffmpeg -version`)                               |
-| **Chrome / Chromium** | any        | used by HyperFrames to render each template                      |
+| Item                  | Need       | Notes                                                               |
+| --------------------- | ---------- | ------------------------------------------------------------------- |
+| **Node.js**           | ≥ 22       | `node --version`                                                    |
+| **FFmpeg + ffprobe**  | any modern | must be in PATH (`ffmpeg -version`)                                 |
+| **Chrome / Chromium** | any        | used by HyperFrames to render each template                         |
 | **OmniVoice server**  | running    | local TTS at `OMNIVOICE_ENDPOINT` (default `http://127.0.0.1:8123`) |
-| **Claude Code CLI**   | optional   | only for the `/create-template-video` skill                      |
+| **Claude Code CLI**   | optional   | only for the `/create-template-video` skill                         |
 
 **Install FFmpeg:**
 
@@ -233,38 +225,57 @@ npm run pipeline -- output/<slug>/script.json
 
 ```json
 {
-  "version": "1.0",
-  "renderer": "hyperframes",
-  "aspect": "9:16",
-  "metadata": {
-    "title": "Apple ra mắt iPhone 17 camera 200MP",
-    "source": { "url": "https://...", "domain": "aicodingvn.vercel.app", "image": null },
-    "channel": "AI Coding"
-  },
-  "voice": { "provider": "omnivoice", "speed": 1.0 },
-  "scenes": [
-    {
-      "id": "hook",
-      "type": "hook",
-      "voiceText": "Apple vừa ra mắt iPhone mười bảy với camera hai trăm megapixel.",
-      "templateId": "frame-liquid-bg-hero",
-      "inputs": { "kicker": "🔥 Tin nóng", "headline": "iPhone 17", "subheadline": "Camera 200MP", "cta": "Theo dõi ngay", "brand": "AI Coding" }
+    "version": "1.0",
+    "renderer": "hyperframes",
+    "aspect": "9:16",
+    "metadata": {
+        "title": "Apple ra mắt iPhone 17 camera 200MP",
+        "source": {
+            "url": "https://...",
+            "domain": "aicodingvn.vercel.app",
+            "image": null
+        },
+        "channel": "AI Coding"
     },
-    {
-      "id": "body-1",
-      "type": "body",
-      "voiceText": "Cảm biến mới thu nhiều ánh sáng hơn, ảnh đêm sắc nét hơn rõ rệt.",
-      "templateId": "frame-pentagram-stat",
-      "inputs": { "label": "Camera", "headline": "200MP", "subtitle": "Cảm biến lớn nhất từ trước tới nay", "anchor": "200" }
-    },
-    {
-      "id": "outro",
-      "type": "outro",
-      "voiceText": "Theo dõi AI Coding để xem bản tin công nghệ mới mỗi ngày.",
-      "templateId": "frame-logo-outro",
-      "inputs": { "brand_name": "AI Coding", "tagline": "Tin công nghệ mỗi ngày", "primary_url": "https://aicodingvn.vercel.app/" }
-    }
-  ]
+    "voice": { "provider": "omnivoice", "speed": 1.0 },
+    "scenes": [
+        {
+            "id": "hook",
+            "type": "hook",
+            "voiceText": "Apple vừa ra mắt iPhone mười bảy với camera hai trăm megapixel.",
+            "templateId": "frame-liquid-bg-hero",
+            "inputs": {
+                "kicker": "🔥 Tin nóng",
+                "headline": "iPhone 17",
+                "subheadline": "Camera 200MP",
+                "cta": "Theo dõi ngay",
+                "brand": "AI Coding"
+            }
+        },
+        {
+            "id": "body-1",
+            "type": "body",
+            "voiceText": "Cảm biến mới thu nhiều ánh sáng hơn, ảnh đêm sắc nét hơn rõ rệt.",
+            "templateId": "frame-pentagram-stat",
+            "inputs": {
+                "label": "Camera",
+                "headline": "200MP",
+                "subtitle": "Cảm biến lớn nhất từ trước tới nay",
+                "anchor": "200"
+            }
+        },
+        {
+            "id": "outro",
+            "type": "outro",
+            "voiceText": "Theo dõi AI Coding để xem bản tin công nghệ mới mỗi ngày.",
+            "templateId": "frame-logo-outro",
+            "inputs": {
+                "brand_name": "AI Coding",
+                "tagline": "Tin công nghệ mỗi ngày",
+                "primary_url": "https://aicodingvn.vercel.app/"
+            }
+        }
+    ]
 }
 ```
 
@@ -353,17 +364,17 @@ No `assets/sfx/`? The pipeline just renders without SFX.
 
 ## 🛠️ Built With
 
-| Layer             | Technology                                                                       |
-| ----------------- | -------------------------------------------------------------------------------- |
-| **Runtime**       | Node ≥22 · TypeScript 6 · ESM · [tsx](https://github.com/privatenumber/tsx)       |
+| Layer             | Technology                                                                                |
+| ----------------- | ----------------------------------------------------------------------------------------- |
+| **Runtime**       | Node ≥22 · TypeScript 6 · ESM · [tsx](https://github.com/privatenumber/tsx)               |
 | **Render**        | [HyperFrames](https://www.npmjs.com/package/hyperframes) `0.6.94` (HTML→MP4 via Chromium) |
-| **TTS**           | OmniVoice (local)                                                                |
-| **Schema**        | [Zod](https://zod.dev) ^4                                                        |
-| **HTTP**          | axios + [nock](https://github.com/nock/nock)                                     |
-| **Concurrency**   | [p-limit](https://github.com/sindresorhus/p-limit)                              |
-| **A/V**           | FFmpeg + ffprobe                                                                 |
-| **Tests**         | [Vitest](https://vitest.dev) ^4                                                  |
-| **Orchestration** | [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) skill        |
+| **TTS**           | OmniVoice (local)                                                                         |
+| **Schema**        | [Zod](https://zod.dev) ^4                                                                 |
+| **HTTP**          | axios + [nock](https://github.com/nock/nock)                                              |
+| **Concurrency**   | [p-limit](https://github.com/sindresorhus/p-limit)                                        |
+| **A/V**           | FFmpeg + ffprobe                                                                          |
+| **Tests**         | [Vitest](https://vitest.dev) ^4                                                           |
+| **Orchestration** | [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) skill                 |
 
 ---
 
@@ -390,13 +401,13 @@ If this project saved you time, please consider:
 
 ## ⭐ Star History
 
-<div align="center">
-
-<a href="https://star-history.com/#huytranvan2010/AI-auto-generate-video&Date">
-<img alt="Star History Chart" src="https://api.star-history.com/svg?repos=huytranvan2010/AI-auto-generate-video&type=Date" width="640" />
+<a href="https://www.star-history.com/?type=date&repos=huytranvan2010%2FAI-auto-generate-video">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=huytranvan2010/AI-auto-generate-video&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=huytranvan2010/AI-auto-generate-video&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=huytranvan2010/AI-auto-generate-video&type=date&legend=top-left" />
+ </picture>
 </a>
-
-</div>
 
 ---
 
