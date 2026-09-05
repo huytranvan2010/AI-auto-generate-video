@@ -113,6 +113,8 @@ Bạn tự kiểm soát từng scene, từng template.
 
 Vài phút sau → `output/<slug>/video.mp4` (1080×1920).
 
+**Chú ý**: Đã bổ sung thư mục `.agent` rồi nên mọi hướng dẫn này không những hoạt động với Claude Code mà còn có thể hoạt động với các Coding Assistant khác vì tất cả ở đây là skill.
+
 ---
 
 ## 🎥 Live demo

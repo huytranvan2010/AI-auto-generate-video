@@ -113,6 +113,8 @@ Full control over every scene and template.
 
 A few minutes later → `output/<slug>/video.mp4` (1080×1920).
 
+**Note**: The `.agent` directory has been added, so all these instructions work not only with Claude Code but can also work with other Coding Assistants, since everything here is a skill.
+
 ---
 
 ## 🎥 Live demo
