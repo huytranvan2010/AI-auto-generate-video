@@ -1,4 +1,4 @@
-# Attribution — frame-aicoding-comparison
+# Attribution — frame-comparison
 
 **Original template** authored for this repo (AI Coding). Not vendored from
 nexu-io/html-video.
@@ -19,3 +19,4 @@ A dark "head to head" comparison:
 Caller controls per side: `from`/`to` gradient hex, `icon`, `label`, `bullets[]`,
 `stat`, `stat_label`, `win`. Pure CSS `@keyframes`. Be Vietnam Pro (Vietnamese).
 16:9 = `index.html`, 9:16 = `compositions/portrait.html`.
+- TechLetsGo: renamed from `frame-aicoding-comparison` to `frame-comparison` (neutral id); design unchanged.

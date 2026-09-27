@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=1080, height=1920" />
-<title>AI Coding List · Portrait 9:16</title>
+<title>List · Portrait 9:16</title>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
   /*
-   * frame-aicoding-list — original template for this repo. A dark, glossy
+   * frame-list — original template for this repo. A dark, glossy
    * "impact / comparison list": warm gradient glow on a near-black canvas, a big
    * title with a gradient accent word + subtitle, then a stack of rounded item
    * cards (coloured icon chip + title/desc + a coloured right-hand tag) whose
@@ -98,6 +98,8 @@
       var accent = v.accent != null ? String(v.accent) : "";
       if (titleEl) {
         titleEl.textContent = "";
+        // Keep a space between title and accent even if the caller omits it.
+        if (title && accent && !/\s$/.test(title)) title += " ";
         titleEl.appendChild(document.createTextNode(title));
         if (accent) {
           var s = document.createElement("span");

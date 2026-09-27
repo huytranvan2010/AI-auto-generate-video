@@ -14,3 +14,4 @@ Vendored and adapted from:
 - Swapped the `mix-blend-mode: difference` headline for a **vivid gradient (gold→orange→pink→purple) clipped to text + drop-shadow** (caller-overridable via `headline_from`/`headline_to`) so the hook is eye-catching yet readable over the moving blobs; added a staggered text reveal.
 - Moved copy to `data-composition-variables` slots: `kicker`, `headline`, `subheadline`, `cta`, `brand`.
 - Added a **9:16 portrait** composition at `compositions/portrait.html`; `index.html` is the 16:9 canvas. The floating-blob CSS `@keyframes` (the "liquid" signature) are kept.
+- TechLetsGo: brand bar shows `assets/logo.svg` (TechLetsGo's own logo, transparent) instead of the previous logo + "Senior AI Engineer" label; removed the hardcoded "9:16" chip text; the footer label is now the `tag` slot (default "Bản tin").

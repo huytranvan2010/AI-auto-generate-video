@@ -22,7 +22,7 @@ Render aspect is set once per script (`"aspect": "9:16"` for TikTok/Shorts).
 
 | slot           | type     | limit                    | notes                                                |
 | -------------- | -------- | ------------------------ | ---------------------------------------------------- |
-| `kicker`       | string   | ≤24                      | small uppercase label, top-left (e.g. "AI Coding")   |
+| `kicker`       | string   | ≤24                      | small uppercase label, top-left (e.g. "TechLetsGo")   |
 | `date`         | string   | ≤24                      | top-right metadata (e.g. "12 · 06 · 2026")           |
 | `figure`       | string   | ≤4                       | giant red figure — a number/stat (e.g. "5.5", "200") |
 | `headline`     | string[] | ≤3 lines, ≤14 chars/line | line 2 renders red                                   |
@@ -114,7 +114,8 @@ sweep, tagline, and a footer URL.
 | ------------- | ------ | ----- | ----------------------------------------------------------- |
 | `brand_name`  | string | ≤60   | channel/brand name (big, shimmering)                        |
 | `tagline`     | string | ≤120  | one line under the name                                     |
-| `primary_url` | string | ≤40   | footer URL / source (e.g. "https://aicodingvn.vercel.app/") |
+| `primary_url` | string | ≤40   | footer URL / source (optional; leave empty until the channel has a URL) |
+| `sign_off`    | string | ≤40   | 16:9 only: bottom-right corner (default "English & Technology & AI") |
 
 ---
 
@@ -127,13 +128,14 @@ subheadline and a rounded CTA pill.
 
 | slot          | type   | limit | notes                                              |
 | ------------- | ------ | ----- | -------------------------------------------------- |
-| `kicker`        | string | ≤24  | small uppercase label, top-left (e.g. "AI Coding")            |
+| `kicker`        | string | ≤24  | small uppercase label, top-left (e.g. "TechLetsGo")            |
 | `headline`      | string | ≤60  | the hook line (keep punchy, ~2 short lines) — shown in a vivid gradient |
 | `headline_from` | string | hex  | headline gradient start (optional; default vivid gold→purple) |
 | `headline_to`   | string | hex  | headline gradient end (optional)                              |
 | `subheadline`   | string | ≤120 | one supporting sentence                                       |
 | `cta`           | string | ≤24  | rounded pill label (e.g. "Theo dõi ngay")                    |
 | `brand`         | string | ≤24  | footer-left label (channel/source)                           |
+| `tag`           | string | ≤16  | footer-right label (optional; default "Bản tin", e.g. "Kiến thức") |
 
 > Headline renders in an eye-catching gradient (default gold→orange→pink→purple).
 > Override with `headline_from`/`headline_to` to fit the tone if you want.
@@ -170,7 +172,7 @@ with a cyan×magenta RGB-split glitch. High-energy, edgy.
 
 ---
 
-## frame-aicoding-list
+## frame-list
 **Role:** body / list · comparison (original). Dark canvas with a warm gradient
 glow, a big gradient-accent title + subtitle, then a stack of rounded item cards
 — each with a coloured icon chip, title + description, and a coloured level tag.
@@ -179,7 +181,7 @@ glow, a big gradient-accent title + subtitle, then a stack of rounded item cards
 
 | slot       | type     | limit       | notes                                                        |
 | ---------- | -------- | ----------- | ------------------------------------------------------------ |
-| `title`       | string   | ≤40       | big headline (text before the accent)                          |
+| `title`       | string   | ≤40       | big headline (text before the accent; a space is added automatically) |
 | `accent`      | string   | ≤20       | trailing word shown in a gradient (optional)                   |
 | `accent_from` | string   | hex       | gradient start colour for `accent` (optional; default `#ff9a3d`) |
 | `accent_to`   | string   | hex       | gradient end colour for `accent` (optional; default `#ff2d55`)   |
@@ -197,7 +199,7 @@ Each `items[]` entry:
 
 ---
 
-## frame-aicoding-comparison
+## frame-comparison
 **Role:** body / head-to-head comparison (original). Dark canvas with a teal
 glow, a pill badge, a "X vs Y" headline with two differently-coloured gradient
 sides, two framed cards (big gradient label + bullets, a WIN badge on the winner)

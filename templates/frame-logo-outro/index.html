@@ -207,7 +207,7 @@
             data-duration="5"
             data-width="1920"
             data-height="1080"
-            data-composition-variables='{"brand_name":"AI Coding","tagline":"Bản tin mới mỗi ngày","primary_url":"https://aicodingvn.vercel.app/"}'
+            data-composition-variables='{"brand_name": "TechLetsGo", "tagline": "Học tiếng Anh, công nghệ và AI mỗi ngày", "primary_url": "", "sign_off": "English & Technology & AI"}'
         >
             <div class="ribbon"></div>
 
@@ -244,8 +244,8 @@
             <p class="tagline"></p>
             <div class="meta"><span class="meta-url"></span></div>
 
-            <div class="corner left">AI Coding</div>
-            <div class="corner right">Bye Các Con Vợ</div>
+            <div class="corner left"></div>
+            <div class="corner right">English &amp; Technology &amp; AI</div>
         </div>
 
         <script>
@@ -262,6 +262,8 @@
                 set(".brand .shimmer", v.brand_name);
                 set(".tagline", v.tagline);
                 set(".meta-url", v.primary_url);
+                set(".corner.left", v.brand_name);
+                set(".corner.right", v.sign_off);
             })();
             window.__timelines = window.__timelines || {};
             window.__timelines["main"] = {

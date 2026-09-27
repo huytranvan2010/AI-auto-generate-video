@@ -14,3 +14,4 @@ Vendored and adapted from:
 - Moved copy to `data-composition-variables` slots: `brand_name`, `tagline`, `primary_url`.
 - Added a **9:16 portrait** composition at `compositions/portrait.html`; `index.html` is the 16:9 canvas. The glow/shimmer animation is kept from upstream.
 - Replaced the upstream "H" monogram mark with a **`</>` code glyph** (purple brackets + white slash) to suit the "AI Coding" brand, keeping the same assembling-pieces + glow motion.
+- TechLetsGo: portrait brand bar shows `assets/logo.svg` (TechLetsGo's own logo) instead of the previous logo + "Senior AI Engineer" label; 16:9 corners are now `brand_name` (left) and the `sign_off` slot (right, default "English & Technology & AI") instead of hardcoded text.

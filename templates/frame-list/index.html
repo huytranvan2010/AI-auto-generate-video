@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=1920, height=1080" />
-<title>AI Coding List · 16:9</title>
+<title>List · 16:9</title>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
   /*
-   * frame-aicoding-list — original template for this repo. Dark glossy impact /
+   * frame-list — original template for this repo. Dark glossy impact /
    * comparison list (warm gradient glow + big gradient-accent title + rounded
    * item cards with coloured icon chip + coloured level tag). Be Vietnam Pro
    * covers Vietnamese. See NOTICE. Landscape 16:9; 9:16 at compositions/portrait.html.
@@ -91,6 +91,8 @@
       var accent = v.accent != null ? String(v.accent) : "";
       if (titleEl) {
         titleEl.textContent = "";
+        // Keep a space between title and accent even if the caller omits it.
+        if (title && accent && !/\s$/.test(title)) title += " ";
         titleEl.appendChild(document.createTextNode(title));
         if (accent) {
           var s = document.createElement("span");

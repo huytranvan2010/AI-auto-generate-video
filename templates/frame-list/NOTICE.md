@@ -1,4 +1,4 @@
-# Attribution — frame-aicoding-list
+# Attribution — frame-list
 
 **Original template** authored for this repo (AI Coding). Not vendored from
 nexu-io/html-video.
@@ -18,3 +18,5 @@ A dark, glossy "impact / comparison list":
 
 Pure CSS `@keyframes` (header fades down, cards stagger up). Be Vietnam Pro
 (Vietnamese-native). 16:9 = `index.html`, 9:16 = `compositions/portrait.html`.
+- TechLetsGo: a space is inserted between `title` and `accent` when the caller omits it (previously rendered glued, e.g. "ởkhách").
+- TechLetsGo: renamed from `frame-aicoding-list` to `frame-list` (neutral id); design unchanged.
