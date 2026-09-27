@@ -42,7 +42,10 @@ export const TemplateScriptSchema = z.object({
     channel: z.string().min(1),
   }),
   voice: z.object({
-    provider: z.literal("omnivoice").default("omnivoice"),
+    /** vieneu = default (Apache-2.0, monetization OK); omnivoice model is CC-BY-NC. */
+    provider: z.enum(["vieneu", "omnivoice"]).default("vieneu"),
+    /** VieNeu preset name (GET /v1/voices), e.g. "Hải Đăng". Omit → VIENEU_VOICE or server default. */
+    voice: z.string().min(1).optional(),
     speed: z.number().min(0.5).max(2.0),
   }),
   /** Output aspect for every scene (templates render a matching composition). */

@@ -34,9 +34,11 @@ export async function runTemplatePipeline(scriptPath: string): Promise<void> {
   log.info(`Output directory: ${outputDir}`);
 
   // STEP 1 — load + validate
-  log.step(1, TOTAL_STEPS, `Load + validate template script (TTS: ${cfg.ttsProvider})`);
   const raw = JSON.parse(await readFile(scriptPath, "utf8"));
   const script: TemplateScript = TemplateScriptSchema.parse(raw);
+  const provider = script.voice.provider;
+  const voice = provider === "vieneu" ? (script.voice.voice ?? cfg.vieneuVoice) : undefined;
+  log.step(1, TOTAL_STEPS, `Load + validate template script (TTS: ${provider}${voice ? ` · ${voice}` : ""})`);
 
   // STEP 2 — script.txt for CapCut
   log.step(2, TOTAL_STEPS, "Write script.txt");
@@ -44,7 +46,7 @@ export async function runTemplatePipeline(scriptPath: string): Promise<void> {
 
   // STEP 3 — TTS per scene (idempotent)
   log.step(3, TOTAL_STEPS, "TTS each scene");
-  const ttsClient = createTtsClient(cfg);
+  const ttsClient = createTtsClient(cfg, provider);
   const limit = pLimit(cfg.ttsConcurrency);
   const voiceDir = join(outputDir, "voice");
   await mkdir(voiceDir, { recursive: true });
@@ -53,13 +55,18 @@ export async function runTemplatePipeline(scriptPath: string): Promise<void> {
       limit(async () => {
         const out = join(voiceDir, `scene-${scene.id}.mp3`);
         const srtOut = join(voiceDir, `scene-${scene.id}.srt`);
-        if (existsSync(out)) {
+        // Reuse only when text, provider, voice and speed all match what made
+        // the mp3; otherwise a voice/speed/text edit would keep stale audio.
+        const keyPath = join(voiceDir, `scene-${scene.id}.json`);
+        const ttsKey = JSON.stringify({ provider, voice, speed: script.voice.speed, text: scene.voiceText });
+        if (existsSync(out) && existsSync(keyPath) && (await readFile(keyPath, "utf8")) === ttsKey) {
           const dur = await getDurationSec(out);
           log.info(`  scene ${scene.id}: REUSE mp3 (${dur.toFixed(2)}s)`);
           return { id: scene.id, path: out, durationSec: dur };
         }
         log.info(`  TTS scene ${scene.id} (${scene.voiceText.length} chars)...`);
-        await ttsClient.generate(scene.voiceText, out, srtOut);
+        await ttsClient.generate(scene.voiceText, out, srtOut, { voice, speed: script.voice.speed });
+        await writeFile(keyPath, ttsKey);
         const dur = await getDurationSec(out);
         log.info(`  scene ${scene.id}: ${dur.toFixed(2)}s`);
         return { id: scene.id, path: out, durationSec: dur };

@@ -10,7 +10,8 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 // OmniVoice local TTS: POST { text } → audio/mpeg bytes.
 // No API key or voice ID — configured server-side.
-// srtOutPath is ignored (no subtitle support).
+// srtOutPath and opts (voice/speed) are ignored.
+// The OmniVoice model is CC-BY-NC: do not use it for monetized videos.
 export class OmniVoiceClient implements TtsClient {
   constructor(private cfg: OmniVoiceOpts) {}
 
