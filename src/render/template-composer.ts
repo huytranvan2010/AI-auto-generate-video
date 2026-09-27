@@ -1,5 +1,6 @@
 import { spawn } from "node:child_process";
-import { existsSync, mkdtempSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { dirname, isAbsolute, join, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -8,8 +9,35 @@ import { log } from "../utils/logger.js";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 /** Repo-root/templates — where vendored HyperFrames templates live. */
 const TEMPLATES_DIR = join(__dirname, "..", "..", "templates");
+/** Fonts HyperFrames fetches for templates stay inside the repo (gitignored). */
+const FONT_CACHE_DIR = join(__dirname, "..", "..", ".cache", "hyperframes-fonts");
+
+/**
+ * Keep renders local and pinned: no telemetry, no update check / self-upgrade
+ * (which would silently replace the pinned version), font cache in the repo.
+ */
+const HYPERFRAMES_ENV = {
+    HYPERFRAMES_NO_TELEMETRY: "1",
+    HYPERFRAMES_NO_UPDATE_CHECK: "1",
+    HYPERFRAMES_NO_AUTO_INSTALL: "1",
+    HYPERFRAMES_FONT_CACHE_DIR: FONT_CACHE_DIR,
+};
 
 export type Aspect = "16:9" | "9:16" | "1:1";
+
+/**
+ * Absolute path to the HyperFrames CLI installed in this repo's node_modules
+ * (pinned exactly in package.json → deterministic renders, no network at
+ * render time). Run with the current Node binary, never through a shell, so
+ * paths with spaces or Vietnamese characters stay intact.
+ */
+function hyperframesCli(): string {
+    const require = createRequire(import.meta.url);
+    const pkgPath = require.resolve("hyperframes/package.json");
+    const pkg = JSON.parse(readFileSync(pkgPath, "utf8")) as { bin: string | Record<string, string> };
+    const bin = typeof pkg.bin === "string" ? pkg.bin : pkg.bin.hyperframes;
+    return join(dirname(pkgPath), bin);
+}
 
 /**
  * Each aspect renders a dedicated composition file authored at that native
@@ -57,19 +85,24 @@ export async function composeTemplate(args: ComposeArgs): Promise<string> {
         ? args.outputPath
         : resolve(process.cwd(), args.outputPath);
 
-    // Pass variables via a temp file, NOT --variables: a JSON arg through
-    // npx + shell:true on Windows mangles quotes/Unicode (em-dash, Vietnamese)
-    // and the render silently no-ops. A file is shell-safe and UTF-8 clean.
+    // Pass variables via a temp file, NOT --variables: a JSON arg on the
+    // command line gets mangled on Windows (quotes/Unicode, em-dash, Vietnamese)
+    // and the render silently no-ops. A file is UTF-8 clean.
     const varsFile = join(
         mkdtempSync(join(tmpdir(), "hf-vars-")),
         "variables.json",
     );
     writeFileSync(varsFile, JSON.stringify(inputs), "utf8");
 
+    // HyperFrames needs Node ≥ 22; on older Node it dies with a cryptic
+    // "util does not provide an export named 'styleText'".
+    const nodeMajor = Number(process.versions.node.split(".")[0]);
+    if (nodeMajor < 22) {
+        throw new Error(`HyperFrames needs Node >= 22, running ${process.version}. Run \`nvm use 22\` first.`);
+    }
+
     const spawnArgs = [
-        // -y: never prompt to install. Pinned version → deterministic renders.
-        "-y",
-        "hyperframes@0.6.94",
+        hyperframesCli(),
         "render",
         templateDir,
         "--composition",
@@ -87,9 +120,9 @@ export async function composeTemplate(args: ComposeArgs): Promise<string> {
     log.info(`Compose ${templateId} (${entryFile}) → ${outputPath}`);
 
     await new Promise<void>((resolve, reject) => {
-        const proc = spawn("npx", spawnArgs, {
+        const proc = spawn(process.execPath, spawnArgs, {
             stdio: ["ignore", "inherit", "inherit"],
-            shell: true,
+            env: { ...process.env, ...HYPERFRAMES_ENV },
         });
         proc.on("close", (code) =>
             code === 0
@@ -111,14 +144,14 @@ if (
     import.meta.url === pathToFileURL(process.argv[1]).href
 ) {
     const inputs = {
-        kicker: "AI Coding",
+        kicker: "TechLetsGo",
         date: "12 · 06 · 2026",
         figure: "5.5",
         headline: ["GPT 5.5", "ra mắt.", "Mạnh nhất."],
         standfirst:
             "OpenAI vừa công bố mô hình mạnh nhất từ trước tới nay — nhanh hơn, rẻ hơn, hiểu tiếng Việt tốt hơn.",
-        footer_left: "AI Coding",
-        footer_right: "https://aicodingvn.vercel.app/",
+        footer_left: "TechLetsGo",
+        footer_right: "Bản tin",
     };
     (async () => {
         await composeTemplate({
