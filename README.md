@@ -2,9 +2,12 @@
 
 <div align="center">
 
-<img src="./assets/logo.svg" alt="AI Coding" width="96" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/logo-white.svg" />
+  <img src="./assets/logo.svg" alt="TechLetsGo — English &amp; Technology &amp; AI" width="320" />
+</picture>
 
-<h1>AI&nbsp;Coding&nbsp;·&nbsp;Template&nbsp;Video</h1>
+<h1>TechLetsGo&nbsp;·&nbsp;Template&nbsp;Video</h1>
 
 <p><b>A Vietnamese article in. A 9:16 short out.</b><br/>
 One command · zero editing · deterministic renders.</p>
@@ -13,7 +16,7 @@ One command · zero editing · deterministic renders.</p>
 <img alt="Node" src="https://img.shields.io/badge/Node-%E2%89%A522-339933?style=flat-square&logo=node.js&logoColor=white" />
 <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-6-3178C6?style=flat-square&logo=typescript&logoColor=white" />
 <img alt="HyperFrames" src="https://img.shields.io/badge/HyperFrames-0.6.94-ec4899?style=flat-square" />
-<img alt="OmniVoice" src="https://img.shields.io/badge/TTS-OmniVoice-f59e0b?style=flat-square" />
+<img alt="VieNeu-TTS" src="https://img.shields.io/badge/TTS-VieNeu--TTS-f59e0b?style=flat-square" />
 <img alt="Format" src="https://img.shields.io/badge/9%3A16-1080%C3%971920-0ea5e9?style=flat-square" />
 <img alt="License" src="https://img.shields.io/badge/License-MIT-10b981?style=flat-square" />
 </p>
@@ -32,7 +35,7 @@ One command · zero editing · deterministic renders.</p>
 ---
 
 <div align="center">
-<img src="./assets/pipeline.svg" alt="url / .txt → Claude Code (/create-template-video) → pipeline (OmniVoice · SFX · HyperFrames · FFmpeg) → video.mp4 + voice.mp3 + script.txt" width="860" />
+<img src="./assets/pipeline.svg" alt="url / .txt → Claude Code (/create-template-video) → pipeline (VieNeu-TTS · SFX · HyperFrames · FFmpeg) → video.mp4 + voice.mp3 + script.txt" width="860" />
 </div>
 
 > **The split that makes it reliable:** AI handles _content_ (the script + template choices),
@@ -51,58 +54,13 @@ CapCut / TikTok / Shorts / Reels:
 
 ---
 
-<div align="center">
-
-### 📚 Muốn làm chủ Claude Code? Học bài bản cùng AI Coding
-
-<a href="https://www.udemy.com/course/claude-code-in-action-practical-guide-from-beginner-to-pro/?referralCode=C62ACDC291F191DF9E55">
-<img src="https://img-c.udemycdn.com/course/480x270/7112153_093e_13.jpg" alt="Vibe Coding Thực Chiến với Claude Code: Từ Zero đến Hero" width="480" />
-</a>
-
-**Vibe Coding Thực Chiến với Claude Code: Từ Zero đến Hero**
-<br/><sub><b>Senior AI Engineer</b> @ AI Coding</sub>
-
-<p><sub>
-Setup &nbsp;·&nbsp; Permission Modes &nbsp;·&nbsp; Memory &nbsp;·&nbsp; Hooks &nbsp;·&nbsp; Skills &nbsp;·&nbsp; MCP Servers &nbsp;·&nbsp; Subagents &nbsp;·&nbsp; GitHub<br/>
-Từ <b>zero</b> đến <b>hero</b> — đúng cách build agent &amp; tự động hoá như repo này.
-</sub></p>
-
-[![Đăng ký trên Udemy](https://img.shields.io/badge/▶_Đăng_ký_ngay_trên_Udemy-A435F0?style=for-the-badge&logo=udemy&logoColor=white)](https://www.udemy.com/course/claude-code-in-action-practical-guide-from-beginner-to-pro/?referralCode=C62ACDC291F191DF9E55)
-
-</div>
-
----
-
-<div align="center">
-
-### 📚 Làm chủ Claude Cowork — Tự động hoá công việc hàng ngày
-
-<a href="https://www.udemy.com/course/lam-chu-claude-cowork-tu-ong-hoa-cac-cong-viec-hang-ngay/?referralCode=8F16E4A8C45809E532D3">
-<img src="assets/cowork.jpg" alt="Làm chủ Claude Cowork - Tự động hoá các công việc hàng ngày" width="480" />
-</a>
-
-**Làm chủ Claude Cowork - Tự động hoá các công việc hàng ngày**
-<br/><sub><b>Senior AI Engineer</b> @ AI Coding</sub>
-
-<p><sub>
-Setup &nbsp;·&nbsp; Tổng hợp email &nbsp;·&nbsp; Lên lịch chạy tự động &nbsp;·&nbsp; Xử lý file &nbsp;·&nbsp; Tạo report &nbsp;·&nbsp; Tạo interactive dashboard &nbsp;·&nbsp; Claude in chrome &nbsp;·&nbsp;
-</sub></p>
-
-[![Đăng ký trên Udemy](https://img.shields.io/badge/▶_Đăng_ký_ngay_trên_Udemy-A435F0?style=for-the-badge&logo=udemy&logoColor=white)](https://www.udemy.com/course/lam-chu-claude-cowork-tu-ong-hoa-cac-cong-viec-hang-ngay/?referralCode=8F16E4A8C45809E532D3)
-
-</div>
-
----
-
 ## 🚀 Quick Start
 
-> 📺 **Detailed guide:** [Watch the video walkthrough on YouTube](https://www.youtube.com/watch?v=V08-8KLmbnA)
-
 ```bash
-git clone https://github.com/huytranvan2010/AI-auto-generate-video.git
-cd AI-auto-generate-video
+git clone <repo-url> techletsgo-template-video
+cd techletsgo-template-video
 npm install
-# start your local OmniVoice server, then generate video
+# start your local VieNeu-TTS server (see Configuration), then generate video
 ```
 
 <table>
@@ -112,7 +70,7 @@ npm install
 **With Claude Code** — _recommended_
 
 ```text
-/create-template-video https://aicodingvn.vercel.app/some-article
+/create-template-video https://example.com/some-article
 ```
 
 Claude fetches the article, writes `script.json`, and runs the pipeline for you.
@@ -138,14 +96,6 @@ A few minutes later → `output/<slug>/video.mp4` (1080×1920).
 
 ---
 
-## 🎥 Live demo
-
-### 👉 [**▶️ Watch on YouTube Shorts**](https://youtube.com/shorts/LUAgRhPBONg) 👈
-
-[![Watch Demo](https://img.youtube.com/vi/LUAgRhPBONg/maxresdefault.jpg)](https://youtube.com/shorts/LUAgRhPBONg)
-
----
-
 ## 🧠 How It Works
 
 ```mermaid
@@ -153,7 +103,7 @@ flowchart LR
     A["📰 URL / .txt"] -->|/create-template-video| B[Claude Code]
     B -->|fetch + write text| C["script.json<br/>renderer: hyperframes"]
     C -->|Zod validate| D[Template Pipeline]
-    D -->|TTS per scene| E[OmniVoice]
+    D -->|TTS per scene| E[VieNeu-TTS]
     E -->|concat + SFX mix| F[voice.mp3]
     D -->|render each template| G["HyperFrames<br/>Chromium"]
     G -->|fit clip to narration| H["clips/scene-*.mp4"]
@@ -174,7 +124,7 @@ Eight deterministic steps in [`src/render/template-pipeline.ts`](src/render/temp
 | --- | ---------------- | ------------------------------------------------------------- |
 | 1   | **Validate**     | `script.json` checked against the Zod schema                  |
 | 2   | **Caption text** | `script.txt` — all `voiceText` joined (CapCut auto-caption)   |
-| 3   | **TTS / scene**  | `voice/scene-<id>.mp3` via OmniVoice _(idempotent)_           |
+| 3   | **TTS / scene**  | `voice/scene-<id>.mp3` via VieNeu-TTS _(idempotent)_          |
 | 4   | **Concat voice** | `voice-raw.mp3` with 0.3s gaps + per-scene start times        |
 | 5   | **SFX mix**      | `voice.mp3` — sound effects layered onto the narration        |
 | 6   | **Render clips** | `clips/scene-<id>-fit.mp4` — template → MP4, fit to narration |
@@ -195,7 +145,7 @@ Eight deterministic steps in [`src/render/template-pipeline.ts`](src/render/temp
 | **Node.js**           | ≥ 22       | `node --version`                                                    |
 | **FFmpeg + ffprobe**  | any modern | must be in PATH (`ffmpeg -version`)                                 |
 | **Chrome / Chromium** | any        | used by HyperFrames to render each template                         |
-| **OmniVoice server**  | running    | local TTS at `OMNIVOICE_ENDPOINT` (default `http://127.0.0.1:8123`) |
+| **VieNeu-TTS server** | running    | local TTS at `VIENEU_ENDPOINT` (default `http://127.0.0.1:8000`)    |
 | **Claude Code CLI**   | optional   | only for the `/create-template-video` skill                         |
 
 **Install FFmpeg:**
@@ -211,14 +161,24 @@ Eight deterministic steps in [`src/render/template-pipeline.ts`](src/render/temp
 
 <br/>
 
-OmniVoice is the only TTS provider, and it's local — **no API keys.**
+The default TTS is [VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS), running locally — **no API keys.** Its model and preset voices are Apache-2.0 and the generated audio may be used in monetized videos.
 
-```env
-TTS_PROVIDER=omnivoice
-OMNIVOICE_ENDPOINT=http://127.0.0.1:8123
+Start its OpenAI-compatible API server from the VieNeu-TTS repo:
+
+```bash
+HOST=127.0.0.1 uv run python -m apps.openai_speech   # → http://127.0.0.1:8000
 ```
 
-The server must accept `POST /tts` with `{ text }` and return `audio/mpeg` bytes.
+```env
+TTS_PROVIDER=vieneu
+VIENEU_ENDPOINT=http://127.0.0.1:8000
+VIENEU_VOICE=Hải Đăng        # optional; empty = server default voice
+# VIENEU_API_KEY=...         # only if the server sets VIENEU_API_KEY
+```
+
+List voices with `curl http://127.0.0.1:8000/v1/voices`; `voice.voice` in `script.json` overrides `VIENEU_VOICE`. The server ignores `speed`, so the rate is applied with FFmpeg `atempo`.
+
+> OmniVoice still works (`"provider": "omnivoice"`, `OMNIVOICE_ENDPOINT`), but its model is **CC-BY-NC** — not for monetized videos.
 
 </details>
 
@@ -229,7 +189,7 @@ The server must accept `POST /tts` with `{ text }` and return `audio/mpeg` bytes
 **Inside Claude Code** _(recommended)_ — pass a URL or a local `.txt`:
 
 ```text
-/create-template-video https://aicodingvn.vercel.app/iphone-17-200mp
+/create-template-video https://example.com/iphone-17-200mp
 /create-template-video news/my-article.txt
 ```
 
@@ -257,12 +217,12 @@ npm run pipeline -- output/<slug>/script.json
         "title": "Apple ra mắt iPhone 17 camera 200MP",
         "source": {
             "url": "https://...",
-            "domain": "aicodingvn.vercel.app",
+            "domain": "example.com",
             "image": null
         },
-        "channel": "AI Coding"
+        "channel": "TechLetsGo"
     },
-    "voice": { "provider": "omnivoice", "speed": 1.0 },
+    "voice": { "provider": "vieneu", "voice": "Hải Đăng", "speed": 1.0 },
     "scenes": [
         {
             "id": "hook",
@@ -274,7 +234,7 @@ npm run pipeline -- output/<slug>/script.json
                 "headline": "iPhone 17",
                 "subheadline": "Camera 200MP",
                 "cta": "Theo dõi ngay",
-                "brand": "AI Coding"
+                "brand": "TechLetsGo"
             }
         },
         {
@@ -292,12 +252,12 @@ npm run pipeline -- output/<slug>/script.json
         {
             "id": "outro",
             "type": "outro",
-            "voiceText": "Theo dõi AI Coding để xem bản tin công nghệ mới mỗi ngày.",
+            "voiceText": "Theo dõi TechLetsGo để học tiếng Anh, công nghệ và AI mỗi ngày.",
             "templateId": "frame-logo-outro",
             "inputs": {
-                "brand_name": "AI Coding",
-                "tagline": "Tin công nghệ mỗi ngày",
-                "primary_url": "https://aicodingvn.vercel.app/"
+                "brand_name": "TechLetsGo",
+                "tagline": "Học tiếng Anh, công nghệ và AI mỗi ngày",
+                "primary_url": ""
             }
         }
     ]
@@ -352,8 +312,8 @@ Full slot reference: [`templates/CATALOG.md`](templates/CATALOG.md).
 | `frame-build-minimal`       | body  | One bold word revealed letter-by-letter — dark/amber      |
 | `frame-creative-voltage`    | body  | A creative slogan — electric-blue split + handwriting     |
 | `frame-glitch-title`        | body  | Breaking / tech news — cyberpunk RGB-split glitch         |
-| `frame-aicoding-list`       | body  | A **list** of 2–5 items (icon + level tag)                |
-| `frame-aicoding-comparison` | body  | A **head-to-head** comparison of two things               |
+| `frame-list`                | body  | A **list** of 2–5 items (icon + level tag)                |
+| `frame-comparison`          | body  | A **head-to-head** comparison of two things               |
 | `frame-logo-outro`          | outro | Default brand end-card — logo glow + name + tagline + URL |
 | `frame-statement-outro`     | outro | Alternative outro — red statement card on paper           |
 
@@ -393,7 +353,7 @@ No `assets/sfx/`? The pipeline just renders without SFX.
 | ----------------- | ----------------------------------------------------------------------------------------- |
 | **Runtime**       | Node ≥22 · TypeScript 6 · ESM · [tsx](https://github.com/privatenumber/tsx)               |
 | **Render**        | [HyperFrames](https://www.npmjs.com/package/hyperframes) `0.6.94` (HTML→MP4 via Chromium) |
-| **TTS**           | OmniVoice (local)                                                                         |
+| **TTS**           | VieNeu-TTS (local, Apache-2.0) · OmniVoice optional (CC-BY-NC)                            |
 | **Schema**        | [Zod](https://zod.dev) ^4                                                                 |
 | **HTTP**          | axios + [nock](https://github.com/nock/nock)                                              |
 | **Concurrency**   | [p-limit](https://github.com/sindresorhus/p-limit)                                        |
@@ -406,9 +366,11 @@ No `assets/sfx/`? The pipeline just renders without SFX.
 ## 🙏 Acknowledgements
 
 - [HyperFrames](https://www.npmjs.com/package/hyperframes) — the HTML-to-video engine behind the templates
-- [OmniVoice](https://github.com/k2-fsa/OmniVoice) — local Vietnamese text-to-speech
+- [VieNeu-TTS](https://github.com/pnnbao97/VieNeu-TTS) — local Vietnamese text-to-speech (Apache-2.0)
+- [OmniVoice](https://github.com/k2-fsa/OmniVoice) — optional TTS (CC-BY-NC model)
 - [html-video](https://github.com/nexu-io/html-video) — HTML-to-video approach this project builds on
 - [Auto-Create-Video](https://github.com/hoquanghai/Auto-Create-Video) — the original project this is based on
+- [AI-auto-generate-video](https://github.com/huytranvan2010/AI-auto-generate-video) — the repo this project is forked from (MIT © AI Coding)
 
 ---
 
@@ -417,22 +379,8 @@ No `assets/sfx/`? The pipeline just renders without SFX.
 If this project saved you time, please consider:
 
 - ⭐ **Star this repo** — it really helps with discoverability
-- 🎓 **[Check out AI Coding's courses on Udemy](https://www.udemy.com/user/tran-van-huy-7/)**
-- 📱 **Follow AI Coding** on [Facebook](https://www.facebook.com/aicoding2010) · [TikTok](https://www.tiktok.com/@aicoding2010) · [YouTube](https://www.youtube.com/@aicoding2010)
 - 💬 Tell a friend who creates content
 - 🐛 Report bugs or request features
-
----
-
-## ⭐ Star History
-
-<a href="https://www.star-history.com/?type=date&repos=huytranvan2010%2FAI-auto-generate-video">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=huytranvan2010/AI-auto-generate-video&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=huytranvan2010/AI-auto-generate-video&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=huytranvan2010/AI-auto-generate-video&type=date&legend=top-left" />
- </picture>
-</a>
 
 ---
 
@@ -442,6 +390,6 @@ If this project saved you time, please consider:
 
 **[⬆ Back to top](#top)**
 
-<sub>Made with ❤️ by <b>AI Coding</b> · <a href="https://aicodingvn.vercel.app/">aicodingvn.vercel.app</a></sub>
+<sub>Made with ❤️ by <b>TechLetsGo</b> · English &amp; Technology &amp; AI</sub>
 
 </div>

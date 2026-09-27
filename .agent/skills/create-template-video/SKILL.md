@@ -47,8 +47,8 @@ Phát hiện input rồi lấy nội dung:
 - `frame-build-minimal` — câu chốt mạnh nền tối (1 từ lớn IN ĐẬM, glow cam, reveal từng chữ).
 - `frame-creative-voltage` — câu sáng tạo/khẩu hiệu, split xanh điện + chữ viết tay.
 - `frame-glitch-title` — cyberpunk glitch RGB-split (nền nhiễu) — hợp tin sốc/breaking/công nghệ.
-- `frame-aicoding-list` — **DANH SÁCH** 2–5 mục (mỗi mục có icon + tag mức độ), nền tối gradient. Dùng khi scene là list/xếp hạng.
-- `frame-aicoding-comparison` — **SO SÁNH 2 thứ** (cũ vs mới, A vs B) — 2 card khung gradient + badge WIN + stat. Dùng khi scene đối đầu/đối chiếu.
+- `frame-list` — **DANH SÁCH** 2–5 mục (mỗi mục có icon + tag mức độ), nền tối gradient. Dùng khi scene là list/xếp hạng.
+- `frame-comparison` — **SO SÁNH 2 thứ** (cũ vs mới, A vs B) — 2 card khung gradient + badge WIN + stat. Dùng khi scene đối đầu/đối chiếu.
 
 **OUTRO:**
 - `frame-logo-outro` — mặc định (logo glow + tên + tagline + url).
@@ -68,23 +68,25 @@ Cấu trúc bắt buộc:
     "metadata": {
         "title": "...",
         "source": { "url": "...", "domain": "...", "image": null },
-        "channel": "AI Coding"
+        "channel": "TechLetsGo"
     },
-    "voice": { "provider": "omnivoice", "speed": 1.0 },
+    "voice": { "provider": "vieneu", "voice": "Hải Đăng", "speed": 1.0 },
     "scenes": [
         /* 8–12 scene: 1 hook + 6–10 body + 1 outro */
     ]
 }
 ```
 
-- `provider`: luôn là `omnivoice` (TTS local duy nhất; không cần `voiceId`/API key).
+- `provider`: dùng `vieneu` (VieNeu-TTS chạy local, Apache-2.0, được dùng cho video kiếm tiền). KHÔNG dùng `omnivoice` cho video đăng kênh: model của nó là CC-BY-NC.
+- `voice`: tên giọng preset của VieNeu (danh sách: `curl http://127.0.0.1:8000/v1/voices`). Bỏ trống → `VIENEU_VOICE` trong `.env.local`, hoặc giọng mặc định của server. Sai tên → pipeline báo lỗi 400.
+- `speed`: 0.5–2.0, được áp dụng thật (FFmpeg atempo, giữ nguyên cao độ).
 - Mỗi scene: `{ id, type, voiceText, templateId, inputs }`. `inputs` khớp slot trong CATALOG.
 - scenes[0].type = `hook`; scene cuối .type = `outro` (templateId = `frame-logo-outro`).
 - **8–12 scene**; tổng voiceText ~270–360 từ (~90–120s) — **GIỮ NGUYÊN tổng thời lượng**, chỉ chia nhỏ ra NHIỀU scene hơn cho nhịp nhanh, đỡ nhàm. Mỗi body scene **~25–40 từ** (mỗi scene chỉ 1 ý duy nhất — nếu 1 đoạn có 2 ý thì TÁCH thành 2 scene thay vì nhồi vào 1). Mục tiêu: mỗi scene xuất hiện trên màn hình chỉ ~6–10s rồi chuyển cảnh.
 
 **Map nội dung → template:**
 
-- hook → **LUÔN `frame-liquid-bg-hero`** (slots: kicker, headline, subheadline, cta, brand). `headline` hiển thị bằng gradient bắt mắt (mặc định vàng→tím); có thể đặt `headline_from`/`headline_to` (2 màu hex) để đổi tông. Không dùng template khác cho hook.
+- hook → **LUÔN `frame-liquid-bg-hero`** (slots: kicker, headline, subheadline, cta, brand, tag — `tag` là nhãn góc dưới, mặc định "Bản tin"; đặt "Kiến thức" cho video giáo dục). `headline` hiển thị bằng gradient bắt mắt (mặc định vàng→tím); có thể đặt `headline_from`/`headline_to` (2 màu hex) để đổi tông. Không dùng template khác cho hook.
 - **body → Claude TỰ CHỌN template hợp nhất cho từng scene** theo nội dung (ưu tiên ĐA DẠNG — đừng lặp 1 template cho mọi body). Chọn trong:
     - `frame-vignelli` — scene có **1 con số/stat** muốn nhấn mạnh, tông tối charcoal + đỏ. Slots: kicker, number, label, note, brand.
     - `frame-pentagram-stat` — scene có **1 con số/benchmark**, nền tối neon (Swiss grid, số cam phát sáng + accent cyan) + biểu đồ cột. Slots: label, headline (số), subtitle, anchor, footer_left, footer_right.
@@ -92,11 +94,11 @@ Cấu trúc bắt buộc:
     - `frame-bold-poster` — **tuyên bố mạnh nhiều dòng** + figure số lớn. Slots: kicker, date, figure, headline[], standfirst, footer_left, footer_right.
     - `frame-creative-voltage` — **câu sáng tạo/khẩu hiệu** (vài từ), split xanh điện + viết tay. Slots: meta, display_lines, accent_index, script, caption.
     - `frame-glitch-title` — **tin sốc/breaking/công nghệ** kiểu cyberpunk glitch. Slots: title, subtitle.
-    - `frame-aicoding-list` — **scene là DANH SÁCH / SO SÁNH 2–5 mục** (ai bị ảnh hưởng, ưu/nhược, các bậc, checklist). Slots: title, accent, accent_from, accent_to, subtitle, items[]. Mỗi item `{icon, title, desc, tag, level}`:
+    - `frame-list` — **scene là DANH SÁCH / SO SÁNH 2–5 mục** (ai bị ảnh hưởng, ưu/nhược, các bậc, checklist). Slots: title, accent, accent_from, accent_to, subtitle, items[]. Mỗi item `{icon, title, desc, tag, level}`:
         - `icon`: Claude TỰ CHỌN emoji hợp từng mục (🚫 ⚠️ ✅ ❌ 📈 💡 🔒 🚀 …), KHÔNG cố định.
         - `level`: `danger`/`warn`/`good`/`info` → quyết định màu icon+tag+thanh. `tag`: nhãn ngắn (Nguy/Cao/Lợi…).
         - `accent_from`/`accent_to`: Claude TỰ CHỌN 2 màu hex cho gradient chữ nhấn (hợp tông bài), vd cam→đỏ, tím→lam, xanh lá.
-    - `frame-aicoding-comparison` — **scene SO SÁNH ĐÚNG 2 thứ** (cũ vs mới, A vs B, trước/sau). Slots: badge, pre, vs, post, left{}, right{}. Mỗi vế `{label, from, to, icon?, bullets[], stat?, stat_label?, win?}`:
+    - `frame-comparison` — **scene SO SÁNH ĐÚNG 2 thứ** (cũ vs mới, A vs B, trước/sau). Slots: badge, pre, vs, post, left{}, right{}. Mỗi vế `{label, from, to, icon?, bullets[], stat?, stat_label?, win?}`:
         - `from`/`to`: Claude TỰ CHỌN 2 màu hex gradient cho mỗi vế (thường 2 vế khác tông, vd trái cam→đỏ, phải teal→lam).
         - `icon`: emoji tuỳ chọn cho mỗi vế. `win: true` cho vế thắng (viền sáng + badge WIN). `stat`/`stat_label`: số liệu tuỳ chọn dưới mỗi card.
     - Gợi ý cân bằng: nếu nhiều scene đều là số, xen kẽ `frame-vignelli` (than + đỏ/vàng) và `frame-pentagram-stat` (tối neon cam/cyan) cho đỡ đơn điệu; chèn `frame-build-minimal` cho scene không-số.
@@ -104,7 +106,7 @@ Cấu trúc bắt buộc:
 
 ### ⚠️ Quy tắc TTS tiếng Việt (BẮT BUỘC cho `voiceText`)
 
-`voiceText` được OmniVoice (TTS tiếng Việt) đọc to. **Số và ký
+`voiceText` được VieNeu-TTS (TTS tiếng Việt) đọc to. **Số và ký
 hiệu bị đọc theo nghĩa đen** — vd "5.5" có thể thành "năm rưỡi" (sai cho số phiên
 bản). Vì vậy **luôn viết số ra chữ tiếng Việt trong `voiceText`**. Còn `inputs`
 (chữ hiển thị trên màn hình) thì GIỮ định dạng số đẹp ("5.5" / "82.7%").
@@ -165,5 +167,6 @@ Tổng thời lượng: XX.Xs
 ## Ghi chú
 
 - Render mỗi scene ~15–20s (Chromium). Video 8–10 scene ~3–5 phút. Cần ffmpeg + Chrome (đã có).
-- TTS idempotent (giữ `voice/scene-*.mp3`); clip cũng idempotent (giữ `clips/scene-*.mp4`) — xoá để render lại sau khi sửa inputs.
+- Cần server VieNeu đang chạy ở `VIENEU_ENDPOINT` (mặc định `http://127.0.0.1:8000`). Trong repo VieNeu-TTS: `HOST=127.0.0.1 uv run python -m apps.openai_speech`.
+- TTS chỉ đọc lại scene khi đổi `voiceText`, giọng hoặc tốc độ (xem `voice/scene-*.json`); clip vẫn idempotent (giữ `clips/scene-*.mp4`) — xoá để render lại sau khi sửa inputs.
 - Thêm template mới: làm theo mục cuối `templates/CATALOG.md` rồi bổ sung 1 dòng vào catalog.

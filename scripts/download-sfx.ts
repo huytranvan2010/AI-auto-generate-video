@@ -75,7 +75,7 @@ async function searchMyInstants(query: string, max: number): Promise<string[]> {
     const resp = await axios.get<string>(url, {
         timeout: 20000,
         headers: {
-            "User-Agent": "Mozilla/5.0 (aicoding-template-video SFX downloader)",
+            "User-Agent": "Mozilla/5.0 (techletsgo-template-video SFX downloader)",
         },
         validateStatus: () => true,
     });
@@ -108,7 +108,7 @@ async function downloadOne(
             responseType: "arraybuffer",
             timeout: 30000,
             headers: {
-                "User-Agent": "Mozilla/5.0 (aicoding-template-video SFX downloader)",
+                "User-Agent": "Mozilla/5.0 (techletsgo-template-video SFX downloader)",
             },
         });
         if (resp.status !== 200) return "failed";
