@@ -1,0 +1,5 @@
+Bạn có thể tạo video ngắn bằng AI mà không cần trả phí API. Quy trình chạy ngay trên máy cá nhân.
+
+Công thức gồm ba bước: model local viết nội dung, OmniVoice đọc tiếng Việt, rồi HyperFrames và FFmpeg dựng thành video dọc. Bạn có thể chạy lại để tinh chỉnh.
+
+Bạn kiểm soát dữ liệu, chi phí và số lần chạy. Theo dõi AI Coding để xem workflow thực tế.

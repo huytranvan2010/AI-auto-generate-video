@@ -1,0 +1,73 @@
+{
+  "version": "1.0",
+  "renderer": "hyperframes",
+  "aspect": "9:16",
+  "metadata": {
+    "title": "AI local cho freelancer",
+    "source": {
+      "url": "local://demo-30s",
+      "domain": "local",
+      "image": null
+    },
+    "channel": "AI Coding"
+  },
+  "voice": {
+    "provider": "omnivoice",
+    "speed": 1.0
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "voiceText": "Bạn có thể tạo video ngắn bằng AI mà không cần trả phí API. Quy trình chạy ngay trên máy cá nhân.",
+      "templateId": "frame-liquid-bg-hero",
+      "inputs": {
+        "kicker": "AI LOCAL",
+        "headline": "AI không cần cloud",
+        "subheadline": "Tạo video ngắn ngay trên máy cá nhân.",
+        "cta": "Xem quy trình",
+        "brand": "AI Coding"
+      },
+      "sfx": {
+        "name": "none",
+        "volume": 0.0,
+        "startOffsetSec": 0
+      }
+    },
+    {
+      "id": "body-1",
+      "type": "body",
+      "voiceText": "Công thức gồm ba bước: model local viết nội dung, OmniVoice đọc tiếng Việt, rồi HyperFrames và FFmpeg dựng thành video dọc. Bạn có thể chạy lại để tinh chỉnh.",
+      "templateId": "frame-pentagram-stat",
+      "inputs": {
+        "label": "PIPELINE LOCAL",
+        "headline": "3 bước",
+        "subtitle": "Viết nội dung · Tạo giọng đọc · Render video",
+        "anchor": "3",
+        "footer_left": "AI Coding",
+        "footer_right": "Local-first"
+      },
+      "sfx": {
+        "name": "none",
+        "volume": 0.0,
+        "startOffsetSec": 0
+      }
+    },
+    {
+      "id": "outro",
+      "type": "outro",
+      "voiceText": "Bạn kiểm soát dữ liệu, chi phí và số lần chạy. Theo dõi AI Coding để xem workflow thực tế.",
+      "templateId": "frame-logo-outro",
+      "inputs": {
+        "brand_name": "AI Coding",
+        "tagline": "Workflow AI thực tế mỗi ngày",
+        "primary_url": "https://aicodingvn.vercel.app/"
+      },
+      "sfx": {
+        "name": "none",
+        "volume": 0.0,
+        "startOffsetSec": 0
+      }
+    }
+  ]
+}

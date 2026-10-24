@@ -1,0 +1,136 @@
+{
+  "version": "1.0",
+  "renderer": "hyperframes",
+  "aspect": "9:16",
+  "metadata": {
+    "title": "Meta 2026: thuật toán khai tử video reaction xào nấu",
+    "source": {
+      "url": "local://meta-2026-react-warning",
+      "domain": "local",
+      "image": null
+    },
+    "channel": "AI Coding"
+  },
+  "voice": {
+    "provider": "omnivoice",
+    "speed": 1.0
+  },
+  "scenes": [
+    {
+      "id": "hook",
+      "type": "hook",
+      "voiceText": "Bạn nghĩ chỉ cần ngồi nhìn và gật gù theo video là sẽ có hàng triệu view? Quên đi! Năm hai nghìn không trăm hai sáu, Meta đã thay đổi luật chơi.",
+      "templateId": "frame-glitch-title",
+      "inputs": {
+        "title": "SAO CHÉP là án tử hình!",
+        "subtitle": "Meta 2026 · Luật chơi mới"
+      },
+      "sfx": {
+        "name": "none",
+        "volume": 0.0,
+        "startOffsetSec": 0
+      }
+    },
+    {
+      "id": "body-1",
+      "type": "body",
+      "voiceText": "Meta nói rõ: chỉ ghép clip và làm biểu cảm khuôn mặt bị coi là không nguyên bản, AI sẽ gắn nhãn sao chép.",
+      "templateId": "frame-pentagram-stat",
+      "inputs": {
+        "label": "LUẬT NGUYÊN BẢN 2026",
+        "headline": "SAO CHÉP",
+        "subtitle": "Ghép clip + biểu cảm khuôn mặt = không nguyên bản",
+        "anchor": "1",
+        "footer_left": "META",
+        "footer_right": "luật mới"
+      },
+      "sfx": {
+        "name": "none",
+        "volume": 0.0,
+        "startOffsetSec": 0
+      }
+    },
+    {
+      "id": "body-2",
+      "type": "body",
+      "voiceText": "Hậu quả: video bị bóp tiếp cận, kênh bị tắt kiếm tiền. Lối thoát là phải tạo ra giá trị mới: xuất hiện trực diện, thêm phân tích, nâng cấp cốt truyện.",
+      "templateId": "frame-aicoding-list",
+      "inputs": {
+        "title": "Bóp tiếp cận",
+        "accent": "Tắt kiếm tiền",
+        "accent_from": "#ff2d55",
+        "accent_to": "#ff5a3d",
+        "subtitle": "Cứu kênh bằng giá trị mới",
+        "items": [
+          {
+            "icon": "🚫",
+            "title": "Ghép clip lạ",
+            "desc": "Không thêm gì mới",
+            "tag": "Nguy",
+            "level": "danger"
+          },
+          {
+            "icon": "❌",
+            "title": "Phản ứng cơ mặt",
+            "desc": "Bị AI gắn nhãn",
+            "tag": "Nguy",
+            "level": "warn"
+          },
+          {
+            "icon": "💡",
+            "title": "Phân tích mới",
+            "desc": "Xuất hiện trực diện",
+            "tag": "Cứu",
+            "level": "good"
+          },
+          {
+            "icon": "🚀",
+            "title": "Nâng cấp cốt",
+            "desc": "Thêm thông tin mới",
+            "tag": "Lời",
+            "level": "good"
+          }
+        ]
+      },
+      "sfx": {
+        "name": "none",
+        "volume": 0.0,
+        "startOffsetSec": 0
+      }
+    },
+    {
+      "id": "body-3",
+      "type": "body",
+      "voiceText": "Đừng trở thành cái bóng của người khác. Phải tạo ra giá trị mới, đó mới là luật sinh tồn.",
+      "templateId": "frame-vignelli",
+      "inputs": {
+        "kicker": "LUẬT SINH TỒN",
+        "number": "2026",
+        "label": "GIÁ TRỊ MỚI",
+        "note": "Xuất hiện trực diện · Phân tích mới · Nâng cấp cốt truyện",
+        "brand": "AI Coding"
+      },
+      "sfx": {
+        "name": "none",
+        "volume": 0.0,
+        "startOffsetSec": 0
+      }
+    },
+    {
+      "id": "outro",
+      "type": "outro",
+      "voiceText": "Kênh của bạn bè có đang làm sai cách này? Hãy gửi ngay video này để cứu lấy kênh của họ nhé!",
+      "templateId": "frame-statement-outro",
+      "inputs": {
+        "cta": "GỬI CHO BẠN ĐANG LÀM REACTION!",
+        "channel": "AI Coding",
+        "source": "Nguồn: Meta 2026"
+      },
+      "sfx": {
+        "name": "none",
+        "volume": 0.0,
+        "startOffsetSec": 0
+      }
+    }
+  ]
+}
